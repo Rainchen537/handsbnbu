@@ -1,0 +1,221 @@
+name: Deploy privacy policy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          persist-credentials: false
+
+      - name: Validate page structure and stage public files
+        run: |
+          python3 - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          import re
+          import shutil
+
+          class DocumentParser(HTMLParser):
+              VOID_TAGS = {
+                  "area", "base", "br", "col", "embed", "hr", "img", "input",
+                  "link", "meta", "param", "source", "track", "wbr",
+              }
+              HIDDEN_TAGS = {"script", "style", "template", "noscript"}
+
+              def __init__(self):
+                  super().__init__(convert_charrefs=True)
+                  self.stack = []
+                  self.errors = []
+                  self.has_html_doctype = False
+                  self.html_lang = None
+                  self.main_count = 0
+                  self.h1_count = 0
+                  self.h1_in_main = 0
+                  self.article_heading_counts = []
+                  self.title_text = []
+                  self.h1_text = []
+                  self.h2_text = []
+                  self.visible_text = []
+                  self.description = None
+                  self.links = []
+
+              def handle_decl(self, declaration):
+                  if declaration.strip().lower() == "doctype html":
+                      self.has_html_doctype = True
+
+              def handle_starttag(self, tag, attrs):
+                  attributes = dict(attrs)
+                  parent_tags = [entry[0] for entry in self.stack]
+                  current_article = next(
+                      (entry[1] for entry in reversed(self.stack) if entry[1] is not None),
+                      None,
+                  )
+                  heading_index = None
+
+                  if tag == "html":
+                      self.html_lang = attributes.get("lang")
+                  elif tag == "main":
+                      self.main_count += 1
+                  elif tag == "h1":
+                      self.h1_count += 1
+                      if "main" in parent_tags:
+                          self.h1_in_main += 1
+                  elif tag == "article":
+                      current_article = len(self.article_heading_counts)
+                      self.article_heading_counts.append(0)
+                  elif tag == "h2":
+                      heading_index = len(self.h2_text)
+                      self.h2_text.append([])
+                      if current_article is not None:
+                          self.article_heading_counts[current_article] += 1
+                  elif tag == "meta" and attributes.get("name", "").lower() == "description":
+                      self.description = attributes.get("content", "").strip()
+                  elif tag == "a" and not self.HIDDEN_TAGS.intersection(parent_tags):
+                      self.links.append(attributes.get("href", ""))
+
+                  if tag not in self.VOID_TAGS:
+                      self.stack.append((tag, current_article, heading_index))
+
+              def handle_startendtag(self, tag, attrs):
+                  self.handle_starttag(tag, attrs)
+                  if tag not in self.VOID_TAGS:
+                      self.handle_endtag(tag)
+
+              def handle_endtag(self, tag):
+                  if tag in self.VOID_TAGS:
+                      return
+                  if not self.stack:
+                      self.errors.append(f"unexpected closing tag: </{tag}>")
+                      return
+                  open_tag = self.stack[-1][0]
+                  if open_tag != tag:
+                      self.errors.append(
+                          f"mismatched closing tag: expected </{open_tag}>, got </{tag}>"
+                      )
+                      return
+                  self.stack.pop()
+
+              def handle_data(self, data):
+                  open_tags = [entry[0] for entry in self.stack]
+                  if self.HIDDEN_TAGS.intersection(open_tags):
+                      return
+
+                  self.visible_text.append(data)
+                  if "title" in open_tags:
+                      self.title_text.append(data)
+                  if "h1" in open_tags:
+                      self.h1_text.append(data)
+
+                  heading = next(
+                      (entry[2] for entry in reversed(self.stack) if entry[2] is not None),
+                      None,
+                  )
+                  if heading is not None:
+                      self.h2_text[heading].append(data)
+
+          source = Path("index.html").read_text(encoding="utf-8")
+          parser = DocumentParser()
+          parser.feed(source)
+          parser.close()
+
+          if parser.stack:
+              parser.errors.append(
+                  "unclosed tags: " + ", ".join(entry[0] for entry in parser.stack)
+              )
+
+          title = " ".join("".join(parser.title_text).split())
+          h1 = " ".join("".join(parser.h1_text).split())
+          headings = [" ".join("".join(parts).split()) for parts in parser.h2_text]
+          visible_text = " ".join("".join(parser.visible_text).split())
+          section_numbers = []
+          for heading in headings:
+              match = re.match(r"^(\d+)[.．、]\s*\S", heading)
+              if not match:
+                  parser.errors.append(f"section heading is not numbered: {heading!r}")
+                  continue
+              section_numbers.append(int(match.group(1)))
+
+          checks = {
+              "missing <!DOCTYPE html>": parser.has_html_doctype,
+              "<html> must declare lang=zh-CN": parser.html_lang == "zh-CN",
+              "expected one <main> element": parser.main_count == 1,
+              "expected one non-empty <h1> inside <main>": (
+                  parser.h1_count == 1 and parser.h1_in_main == 1 and bool(h1)
+              ),
+              "document title must match the visible <h1>": bool(title) and title == h1,
+              "meta description must be present": bool(parser.description),
+              "expected at least six policy sections": len(parser.article_heading_counts) >= 6,
+              "each policy article must contain one <h2>": all(
+                  count == 1 for count in parser.article_heading_counts
+              ),
+              "policy section numbers must be consecutive": section_numbers == list(
+                  range(1, len(parser.article_heading_counts) + 1)
+              ),
+              "a visible mail contact link must be present": any(
+                  href.startswith("mailto:") for href in parser.links
+              ),
+              "visible policy content is unexpectedly short": len(visible_text) >= 500,
+          }
+          parser.errors.extend(message for message, passed in checks.items() if not passed)
+
+          if parser.errors:
+              raise SystemExit("Page validation failed:\n- " + "\n- ".join(parser.errors))
+
+          public_dir = Path("_site")
+          if public_dir.exists():
+              shutil.rmtree(public_dir)
+          public_dir.mkdir()
+          allowlist = (Path("index.html"),)
+          for source_file in allowlist:
+              shutil.copy2(source_file, public_dir / source_file.name)
+
+          staged_files = sorted(
+              str(path.relative_to(public_dir))
+              for path in public_dir.rglob("*")
+              if path.is_file()
+          )
+          expected_files = sorted(path.name for path in allowlist)
+          if staged_files != expected_files:
+              raise SystemExit(
+                  f"Unexpected Pages artifact contents: {staged_files!r}; "
+                  f"expected {expected_files!r}"
+              )
+          PY
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
+        with:
+          path: _site
+
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: validate
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
