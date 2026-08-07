@@ -1,10 +1,12 @@
-# handsbnbu Privacy Policy
+# 掌上BNBU Privacy Policy
 
 这个仓库托管非官方应用“掌上BNBU”的公开隐私政策页面。
 
+仓库名 `handsbnbu` 是为保持已发布客户端与 App Store 使用的 GitHub Pages 地址连续可用而保留的 legacy slug。本仓库只维护公开隐私政策，不包含应用核心源码；核心项目与私有源码仓库统一使用 `bnbumobile`。
+
 - 页面入口：[`index.html`](index.html)
-- 预期 GitHub Pages 地址（完成远端配置后）：<https://rainchen537.github.io/handsbnbu/>
-- 应用仓库：<https://github.com/Rainchen537/ispace_timeline>
+- GitHub Pages 地址：<https://rainchen537.github.io/handsbnbu/>
+- 私有应用仓库：<https://github.com/Rainchen537/bnbumobile>
 
 ## 本地预览
 
