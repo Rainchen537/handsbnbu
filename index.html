@@ -4,20 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>掌上BNBU 隐私政策</title>
+    <link rel="canonical" href="https://bnbu.yunwai.cloud/app-privacy.html" />
     <meta
       name="description"
       content="掌上BNBU 隐私政策，说明应用收集、使用、存储和共享信息的方式。"
     />
     <style>
       :root {
-        --bg: #f4efe6;
-        --paper: rgba(255, 252, 247, 0.94);
-        --ink: #1f2933;
-        --muted: #536171;
-        --line: rgba(73, 87, 101, 0.18);
-        --accent: #0f5c4d;
-        --accent-soft: rgba(15, 92, 77, 0.1);
-        --shadow: 0 24px 60px rgba(31, 41, 51, 0.12);
+        --bg: #f4f7fa;
+        --paper: #ffffff;
+        --ink: #0f172a;
+        --muted: #526174;
+        --line: #cbd5e1;
+        --accent: #005bac;
+        --accent-strong: #1e3a5f;
+        --accent-soft: #e9f2fb;
       }
 
       * {
@@ -29,26 +30,90 @@
         font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC",
           "Source Han Sans SC", sans-serif;
         color: var(--ink);
-        background:
-          radial-gradient(circle at top left, rgba(15, 92, 77, 0.14), transparent 34%),
-          radial-gradient(circle at top right, rgba(176, 122, 59, 0.16), transparent 32%),
-          linear-gradient(180deg, #f8f2e8 0%, var(--bg) 100%);
-        line-height: 1.7;
+        background: linear-gradient(180deg, #f8fbff 0, var(--bg) 460px);
+        line-height: 1.75;
+      }
+
+      a {
+        color: var(--accent);
+      }
+
+      a:focus-visible {
+        outline: 3px solid var(--accent);
+        outline-offset: 4px;
+        border-radius: 4px;
+      }
+
+      .skip-link {
+        position: fixed;
+        top: 8px;
+        left: 8px;
+        z-index: 20;
+        min-height: 44px;
+        padding: 10px 14px;
+        border-radius: 6px;
+        background: var(--accent-strong);
+        color: #fff;
+        text-decoration: none;
+        transform: translateY(-140%);
+      }
+
+      .skip-link:focus {
+        transform: translateY(0);
+      }
+
+      .site-nav {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        border-bottom: 1px solid rgba(203, 213, 225, 0.88);
+        background: rgba(248, 251, 255, 0.92);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+      }
+
+      .site-nav-inner {
+        width: min(1120px, calc(100% - 32px));
+        min-height: 64px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .brand,
+      .back-link {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        color: var(--accent-strong);
+        font-weight: 750;
+        text-decoration: none;
+      }
+
+      .brand {
+        letter-spacing: 0.08em;
+      }
+
+      .back-link {
+        color: var(--accent);
+        font-size: 14px;
+        font-weight: 650;
       }
 
       .wrap {
-        width: min(960px, calc(100% - 32px));
+        width: min(1120px, calc(100% - 32px));
         margin: 0 auto;
-        padding: 48px 0 72px;
+        padding: 48px 0 80px;
       }
 
       .hero {
-        margin-bottom: 20px;
-        padding: 28px;
+        margin-bottom: 24px;
+        padding: 36px;
         border: 1px solid var(--line);
-        border-radius: 28px;
-        background: linear-gradient(135deg, rgba(255, 252, 247, 0.98), rgba(248, 245, 238, 0.9));
-        box-shadow: var(--shadow);
+        border-radius: 12px;
+        background: var(--paper);
       }
 
       .eyebrow {
@@ -56,7 +121,7 @@
         align-items: center;
         gap: 8px;
         padding: 8px 12px;
-        border-radius: 999px;
+        border-radius: 4px;
         background: var(--accent-soft);
         color: var(--accent);
         font-size: 13px;
@@ -66,9 +131,10 @@
 
       h1 {
         margin: 16px 0 12px;
-        font-family: "STSong", "Songti SC", "Noto Serif SC", serif;
-        font-size: clamp(34px, 5vw, 54px);
-        line-height: 1.08;
+        color: var(--accent-strong);
+        font-size: clamp(34px, 5vw, 56px);
+        line-height: 1.1;
+        letter-spacing: -0.035em;
       }
 
       .hero p {
@@ -81,33 +147,37 @@
       .grid {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 18px;
+        gap: 16px;
       }
 
       .card {
-        padding: 24px;
+        padding: 32px 36px;
         border: 1px solid var(--line);
-        border-radius: 24px;
+        border-radius: 12px;
         background: var(--paper);
-        box-shadow: var(--shadow);
-        backdrop-filter: blur(8px);
+        scroll-margin-top: 84px;
       }
 
       h2 {
         margin: 0 0 12px;
-        font-size: 22px;
-        line-height: 1.2;
+        color: var(--accent-strong);
+        font-size: 24px;
+        line-height: 1.25;
       }
 
       p,
       li {
         color: var(--muted);
-        font-size: 15px;
+        font-size: 16px;
       }
 
       ul {
         margin: 0;
-        padding-left: 20px;
+        padding-left: 22px;
+      }
+
+      li + li {
+        margin-top: 10px;
       }
 
       .meta {
@@ -119,8 +189,8 @@
 
       .meta-item {
         padding: 14px 16px;
-        border-radius: 18px;
-        background: rgba(15, 92, 77, 0.06);
+        border-radius: 8px;
+        background: var(--accent-soft);
       }
 
       .meta-item strong {
@@ -149,6 +219,41 @@
         color: var(--ink);
       }
 
+      .toc {
+        margin-bottom: 16px;
+        padding: 20px 24px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--paper);
+      }
+
+      .toc-title {
+        margin: 0 0 12px;
+        color: var(--accent-strong);
+        font-size: 15px;
+        font-weight: 750;
+      }
+
+      .toc-list {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px 20px;
+      }
+
+      .toc-list a {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 650;
+        text-decoration: none;
+      }
+
+      .toc-list a:hover {
+        color: var(--accent);
+      }
+
       footer {
         margin-top: 24px;
         color: var(--muted);
@@ -157,21 +262,67 @@
       }
 
       @media (max-width: 640px) {
+        .site-nav-inner {
+          width: min(100% - 24px, 1120px);
+        }
+
         .wrap {
-          width: min(100% - 20px, 960px);
-          padding: 20px 0 44px;
+          width: min(100% - 24px, 1120px);
+          padding: 24px 0 48px;
         }
 
         .hero,
         .card {
           padding: 20px;
-          border-radius: 20px;
+        }
+
+        .toc {
+          padding: 16px;
+        }
+
+        .toc-list {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+
+      @media print {
+        body {
+          background: #fff;
+        }
+
+        .site-nav,
+        .toc {
+          display: none;
+        }
+
+        .wrap {
+          width: 100%;
+          padding: 0;
+        }
+
+        .hero,
+        .card {
+          break-inside: avoid-page;
+          border-color: #94a3b8;
         }
       }
     </style>
   </head>
   <body>
-    <main class="wrap">
+    <a class="skip-link" href="#policy-content">跳到政策正文</a>
+    <nav class="site-nav" aria-label="官网导航">
+      <div class="site-nav-inner">
+        <a class="brand" href="https://bnbu.me/">BNBU.ME</a>
+        <a class="back-link" href="https://bnbu.me/">返回官网</a>
+      </div>
+    </nav>
+    <main class="wrap" id="policy-content">
       <section class="hero">
         <div class="eyebrow">掌上BNBU Privacy Policy</div>
         <h1>掌上BNBU 隐私政策</h1>
@@ -185,7 +336,7 @@
           </div>
           <div class="meta-item">
             <strong>最后更新</strong>
-            <span>2026年8月24日</span>
+            <span>2026年8月26日</span>
           </div>
           <div class="meta-item">
             <strong>联系邮箱</strong>
@@ -194,8 +345,23 @@
         </div>
       </section>
 
+      <nav class="toc" aria-label="政策章节">
+        <p class="toc-title">政策章节</p>
+        <div class="toc-list">
+          <a href="#information">1. 处理的信息</a>
+          <a href="#use">2. 使用方式</a>
+          <a href="#storage">3. 存储与安全</a>
+          <a href="#sharing">4. 共享与第三方</a>
+          <a href="#permissions">5. 文件与权限</a>
+          <a href="#deletion">6. 删除与权利</a>
+          <a href="#children">7. 未成年人</a>
+          <a href="#updates">8. 政策更新</a>
+          <a href="#contact">9. 联系方式</a>
+        </div>
+      </nav>
+
       <section class="grid">
-        <article class="card">
+        <article class="card" id="information">
           <h2>1. 我们处理哪些信息</h2>
           <ul>
             <li>账户信息：你在应用内主动输入的 BNBU / iSpace 用户名和密码，以及由用户 ID 推导的学校邮箱地址。</li>
@@ -207,15 +373,18 @@
             <li>提醒与本地安排：启用 DDL 提醒、维护本地 TA 日程或确认小U提出的提醒时，应用会处理课程、作业标题、截止时间、通知标题与正文、通知计划和你录入的 TA 安排。小U提醒只在确认后的当前设备本地创建。</li>
             <li>设备与网络元数据：应用会设置 User-Agent，并处理网络状态、请求时间、协议和错误等完成网络请求所需的技术信息；你连接的服务端和网络中间方还可观察连接的源 IP 地址。</li>
             <li>校园导航信息：校园导航页面会直接加载由开发者服务托管的高德 JS API 地图画布，并把学校全名与当前楼宇名称用于高德 POI 搜索。你点击“标记地点”后，应用会从该次地图点击取得经纬度，并把地点名称、备注和坐标按学校账号的散列键保存在本机普通应用偏好中，不上传或跨设备同步；备注不会进入地图 JavaScript 或高德请求。地图使用独立临时零 Cookie 会话，不发送学校密码、学校 Cookie 或本地账号标识。</li>
+            <li>eCard 与生物识别保护：Android/iOS 手机和平板的 eCard 会在当前登录会话内处理统一门户姓名、学院、性别、同源学生照片、MIS 学号、宿舍位置和只编码学号的二维码；这些资料不发送到开发者服务、小U、小组件或 Apple Watch。iPhone/iPad 的 Face ID 或 Touch ID 保护只调用系统认证并在本机保存开关状态，应用不读取、保存或上传面容与指纹模板。</li>
+            <li>小组件、Apple Watch 与实时活动：iPhone/macOS 小组件、配对 Apple Watch 和 iPhone 灵动岛/锁屏实时活动只接收本机生成的精简课程与 DDL 快照，可能包含课程名称、代码、教师、教室、起止时间、DDL 标题、课程名和截止时间。快照不包含学校密码、token、Cookie、姓名、学号、邮件或附件；实时活动不上传 push token。</li>
             <li>登录页的复选框仅表示你已阅读并接受本隐私政策，是手动登录的前置条件。接受本政策不会自动开启使用状态共享，也不会因此向开发者服务上传学校邮箱或最近活跃状态。</li>
             <li>可选的开发者服务信息：只有你在“我的”页面主动开启使用状态共享后，应用才会向开发者运营的 HTTPS 服务发送由用户 ID 推导的学校邮箱、随机安装标识、Android/iOS/macOS/Windows 平台、App 版本、同意版本和前台最近活跃心跳。</li>
-            <li>教师评价信息：你在政教教师档案中主动保存评价时，应用会使用独立设备身份向开发者服务发送教师稳定标识、1 至 5 星总体评分、教学认真度、给分宽松度、点名频率、反馈质量、课程负担、你填写的评价正文和教师评价专用同意版本。若当前 MIS 课表中的教师姓名与该公开教师档案精确匹配，还会发送对应课程代码、课程名称和学期，显示为“课表匹配”；该匹配来自客户端课表，不代表学校官方认证。应用不会随评价发送学校密码、Moodle token、Cookie、SSO 会话、学生姓名、学号或完整课表。</li>
-            <li>可选的小U AI 信息：你主动打开小U时，应用会为 AI 额度、请求鉴权和同账号对话同步建立独立设备身份，并向开发者服务发送由用户 ID 推导的学校邮箱、随机安装标识、平台、App 版本和小U数据处理版本；这不会开启使用状态共享或前台心跳。小U问答会先保存在本机，再同步为同一学校邮箱账号各设备共享的版本化加密快照。你可在输入区选择“简单”或“深度思考”，该偏好按账号保存在设备普通应用沙盒。你主动发送普通文本问题后，应用先发送本次输入、该会话最近最多 10 条问答、所选思考强度，以及客户端当时允许的工具和动作名称。AI Agent 在简单模式最多 12 轮、深度思考最多 32 轮内按需请求客户端工具，每批最多 4 个；客户端只执行名称、参数和来源均通过 allowlist 校验的工具，并把对应的最小必要限量严格上下文返回给 Agent 继续生成。上下文可能包括仅含专业代码、专业名称和年级的受限学业资料，以及课程、课程教师、章节、活动与课件文件元数据、DDL、未来 7 天课表、邮件摘要、当前邮件正文摘录、学校活动、TA 课程和当前页面信息；专业上下文不包含姓名、学号或账号。服务端还可查询受限的 BNBU 官方目录与网页内容，并从已同步的公开教师档案中按专业官方单位、研究倾向、明确指导学生经历、明确通讯作者记录和官网近三年成果、项目或动态记录返回带栏目摘录的候选或完整导师摘要。课程目录上下文有数量和大小上限，不包含课件文件正文、下载 URL、Moodle token 或 Cookie，并会在截断时明确标记。你主动添加图片或常见文本附件时，目前会使用兼容的“规划 + 最终回答”路径；附件只随最终回答请求临时发送，最多 3 个、单个图片 5 MB、单个文本 256 KB、总计 8 MB，问答历史只记录附件文件名。从小U资源库添加 ZIP 时，只发送资源名称、来源、大小和有限文件名摘要组成的文本引用，不上传 ZIP 正文，AI 不能据此声称已读取压缩包内部内容。</li>
+            <li>教师评价信息：你在政教教师档案中主动保存评价时，应用会使用独立设备身份向开发者服务发送教师稳定标识、1 至 5 星总体评分、教学认真度、给分宽松度、点名频率、课程负担、你填写的评价正文和教师评价专用同意版本。新评价不再收集“反馈质量”；历史接口可能继续返回旧评价中的该兼容字段。若当前 MIS 课表中的教师姓名与该公开教师档案精确匹配，还会发送对应课程代码、课程名称和学期，显示为“课表匹配”；该匹配来自客户端课表，不代表学校官方认证。应用不会随评价发送学校密码、Moodle token、Cookie、SSO 会话、学生姓名、学号或完整课表。</li>
+            <li>可选的小U AI 信息：你主动打开小U时，应用会为 AI 额度、请求鉴权和同账号对话同步建立独立设备身份，并向开发者服务发送由用户 ID 推导的学校邮箱、随机安装标识、平台、App 版本和小U数据处理版本；这不会开启使用状态共享或前台心跳。小U问答会先保存在本机，再同步为同一学校邮箱账号各设备共享的版本化加密快照。你可在输入区选择 Low、Medium 或 High 思考强度，该偏好按账号保存在设备普通应用沙盒。你主动发送普通文本问题后，应用先发送本次输入、该会话最近最多 10 条问答、所选思考强度，以及客户端当时允许的工具和动作名称。AI Agent 会在服务端总时限、步骤与 token 上限内按需请求客户端工具，每批最多 4 个；客户端只执行名称、参数和来源均通过 allowlist 校验的工具，并把对应的最小必要限量严格上下文返回给 Agent 继续生成。上下文可能包括仅含专业代码、专业名称和年级的受限学业资料，以及课程、课程教师、章节、活动与课件文件元数据、DDL、未来 7 天课表、邮件摘要、当前邮件正文摘录、学校活动、TA 课程和当前页面信息；专业上下文不包含姓名、学号或账号。服务端还可查询受限的 BNBU 官方目录与网页内容，并从已同步的公开教师档案中按专业官方单位、研究倾向、明确指导学生经历、明确通讯作者记录和官网近三年成果、项目或动态记录返回带栏目摘录的候选或完整导师摘要。课程目录上下文有数量和大小上限，不包含课件文件正文、下载 URL、Moodle token 或 Cookie，并会在截断时明确标记。你主动添加图片或常见文本附件时，附件只随对应请求临时发送，最多 3 个、单个图片 5 MB、单个文本 256 KB、总计 8 MB，问答历史只记录附件文件名。从小U资源库添加 ZIP 时，只发送资源名称、来源、大小和有限文件名摘要组成的文本引用，不上传 ZIP 正文，AI 不能据此声称已读取压缩包内部内容。</li>
+            <li>邮件雷达信息：只有你单独同意邮件雷达后，应用才会在选择的 7、30、90、180 或 365 天范围内读取有界邮件头，并对待分析邮件使用 PEEK 语义获取主题、正文和最多 3 个允许分析的附件。单封邮件合并为一次专用小U请求；学校邮箱密码、Cookie 和长期登录令牌不会发送到开发者服务。分析结果、处理状态和少量待确认记忆候选保存在本机与账号级加密快照中，邮件正文与附件不写入普通小U历史或 MemoryCore L0。</li>
             <li>只有问题明确询问当前位置或附近信息时，应用才会请求系统定位权限，并为该次请求读取经纬度、精度和观测时间；应用不为小U后台持续定位。小U不会读取或发送学校密码、Moodle token、Cookie、邮箱登录凭据、学校 SSO 会话、设备 bearer token 或管理员 token。应用还会处理每个用户的 AI token 月度额度、独立 credit balance、reservation 和实际用量记录，但这些记录不包含对话正文。</li>
           </ul>
         </article>
 
-        <article class="card">
+        <article class="card" id="use">
           <h2>2. 我们如何使用这些信息</h2>
           <ul>
             <li>通过当前应用版本在构建或部署时配置的服务端点完成认证，并访问 BNBU / iSpace 的课程、作业、论坛、文件、课表和门户资料。</li>
@@ -226,13 +395,14 @@
             <li>在你授权后安排 DDL 通知；Android 在系统支持并允许时使用精确闹钟，并根据通知组件保存的待处理计划，在设备重启或应用更新后重新安排提醒。</li>
             <li>在你明确开启使用状态共享后，用于识别同一学校邮箱的应用用户、建立独立设备身份、支持后续多设备设置服务，并在受限管理后台显示登记用户与最近活跃摘要；“在线”仅表示最近五分钟收到前台心跳，不代表持续定位或后台监控。</li>
             <li>在你主动保存教师评价后，以一名用户对一名教师一条可修改评价的方式展示总体及各维度评分、正文和可选的课表匹配课程；其他用户只能看到公开评价，不会看到你的学校邮箱、用户 UUID 或设备信息。你自己的评价会置顶，可继续修改；管理员隐藏后，你仍可看到隐藏状态和原因，其他用户不再看到该评价。</li>
-            <li>在你主动发送小U请求后，AI Agent 可按当前问题和所选思考强度多轮请求客户端声明的限量工具；客户端每次只读取被明确请求且本轮允许的最小必要信息，用于整理邮件、学校活动、DDL、今日安排、课程教师、章节与课件清单，并提出受控动作或下一步选择。深度思考遇到跨轮次课程资料打包时，会重新读取对应课程目录，并语义区分演示文稿、课件 PDF、普通文档、媒体和压缩包。界面只显示实际工具读取与续接阶段，不展示或伪造 AI 的隐藏思维过程。小U可显示 1 至 4 个具体建议并固定追加“其他”，这些建议只供你选择下一轮输入，不作为隐藏推理。小U还可从对话中提出最多 3 条长期记忆建议；每条建议会显示在回复内，供你保存、先编辑或忽略。建议的内容与待处理、已保存或已忽略状态会随加密对话历史同步，只有你点击保存后，内容才会进入独立的加密记忆快照并在后续相关对话中使用。学校事实、教师资料、临时任务、短期安排、第三方隐私、敏感属性、凭据、链接、系统指令和操作授权不会作为记忆建议。邮件、在线文本作业、TA 课和本地提醒在执行前都会显示结构化预览；只有你明确确认后，应用才会执行。上传、删除和课程资料打包等其他副作用也不得由 AI 自动执行；确认课程资料打包后，应用会在设备端从 iSpace 同源下载所选文件，按章节和活动整理并流式生成 ZIP，文件正文和登录 Cookie 不会发送给小U服务端。</li>
+            <li>邮件雷达只在独立同意有效时分析当前范围内的新邮件，生成摘要、优先级、截止时间、后续变化和下一步建议；暂停、缩小范围或撤回同意不会删除已经生成的雷达记录，撤回后停止新的分析。用户主动“标记完成”前，雷达读取不会改变原邮件已读状态。</li>
+            <li>在你主动发送小U请求后，AI Agent 可按当前问题和所选思考强度多轮请求客户端声明的限量工具；客户端每次只读取被明确请求且本轮允许的最小必要信息，用于整理邮件、学校活动、DDL、今日安排、课程教师、章节与课件清单，并提出受控动作或下一步选择。High 思考强度遇到跨轮次课程资料打包时，会重新读取对应课程目录，并语义区分演示文稿、课件 PDF、普通文档、媒体和压缩包。界面只显示实际工具读取与续接阶段，不展示或伪造 AI 的隐藏思维过程。小U可显示 1 至 4 个具体建议并固定追加“其他”，这些建议只供你选择下一轮输入，不作为隐藏推理。小U还可从对话中提出最多 3 条长期记忆建议；每条建议会显示在回复内，供你保存、先编辑或忽略。建议的内容与待处理、已保存或已忽略状态会随加密对话历史同步，只有你点击保存后，内容才会进入独立的加密记忆快照并在后续相关对话中使用。学校事实、教师资料、临时任务、短期安排、第三方隐私、敏感属性、凭据、链接、系统指令和操作授权不会作为记忆建议。邮件、在线文本作业、TA 课和本地提醒在执行前都会显示结构化预览；只有你明确确认后，应用才会执行。上传、删除和课程资料打包等其他副作用也不得由 AI 自动执行；确认课程资料打包后，应用会在设备端从 iSpace 同源下载所选文件，按章节和活动整理并流式生成 ZIP，文件正文和登录 Cookie 不会发送给小U服务端。</li>
             <li>当你要求给课程教师发送邮件时，小U可从自动选择的课程上下文读取教师姓名，并访问 BNBU 官方公开教师目录查询公开邮箱；只有唯一精确匹配的官方邮箱才可进入预览，收件人还必须属于 BNBU 官方域名。提交作业时，应用会再次核对当前会话中对应 Timeline 项、重新读取作业详情，并只允许提交仍可编辑且支持在线文本的作业。</li>
             <li>保障应用正常运行，并提升稳定性与兼容性。</li>
           </ul>
         </article>
 
-        <article class="card">
+        <article class="card" id="storage">
           <h2>3. 信息存储、保留与安全</h2>
           <ul>
             <li>用户名和密码以单条凭据记录保存在设备系统安全存储中：Android 使用加密存储，iOS 使用 Keychain。iOS Keychain 项可能在卸载应用后继续保留，并在重新安装后仍可被应用读取，直至成功退出登录、手动清除或重置相关系统数据。</li>
@@ -247,6 +417,8 @@
             <li>分享远程文件时，Android 和 iOS 都会在应用缓存的独立随机目录中建立临时副本。iOS 会在分享完成、取消或展示失败后清理对应目录；Android 会在展示失败时清理，并在后续分享时清理超过 24 小时的旧目录。邮件附件缓存、尚未到期的 Android 分享缓存和主动下载文件不会仅因退出登录而立即删除；Android 公共 Downloads 中的文件通常也不会因卸载应用而删除。</li>
             <li>本地 TA 课程和截止时间可见性偏好保存在未加密的普通偏好存储中，并按规范化后的登录用户名隔离；这些值可能在退出登录后继续保留，供同一账号后续使用。旧版本的设备全局 TA 偏好键会被移除且不会迁移到当前账号，以避免跨账号暴露。该功能不应被用于保存密码或其他敏感内容。</li>
             <li>课程、课表、通知偏好和功能所需信息也可能在设备本地缓存。学校密码、Moodle token、Cookie、邮箱登录凭据和学校 SSO 会话不会通过开发者服务传输。邮件正文、课程内容或位置只有在客户端根据你本次问题判断为必要时，才会以限量严格格式临时传输；位置不会加入不涉及位置的问题。</li>
+            <li>iPhone/macOS 小组件与 Apple Watch 的精简课表、DDL 快照保存在与当前签名身份匹配的 App Group 或手表本机缓存中，退出学校账号后清除。iPhone/iPad 生物识别保护只在普通本机偏好中保存开关布尔值；认证过程和生物特征由操作系统处理。</li>
+            <li>邮件雷达记录与处理状态按账号保存在本机，并同步为账号级应用层加密快照；暂停、缩小范围或撤回同意时保留已经分析的记录。邮件正文与附件只在单封分析期间限量处理，不写入雷达快照；远端请求账本只保存避免跨设备重复处理所需的稳定身份、状态和用量信息。</li>
             <li>小U问答历史先按规范化账号的散列键保存在设备普通应用沙盒偏好存储中，再同步为同一学校邮箱账号共享的服务端快照；普通对话与学业会话合计最多保留 36 个会话、每个会话 40 条消息，服务端单份序列化明文上限为 512 KiB。记忆建议的内容和待处理、已保存或已忽略状态属于对应消息的一部分。服务端使用独立域分离密钥对整份快照进行应用层加密，数据库保存密文、版本、密文前的字节数和更新时间，不建立对话正文全文索引；多设备写入使用版本冲突检测。历史不写入系统安全存储，退出登录后仍可保留，用户可在小U历史抽屉中清空本机并同步空快照。历史不得包含密码、token 或 Cookie；用户选择的小U附件正文不写入历史，只记录文件名。开发者服务不把临时 Agent 续接状态、附件、邮件正文、课程、DDL、课表、活动或位置上下文写入主业务数据库或应用日志；额度侧只保存 token reservation、实际用量和账本。为生成回复而配置的 OpenAI-compatible AI provider 会临时接收本次请求所需内容，其具体处理和保留规则取决于生产环境选用的 provider。</li>
             <li>小U长期记忆使用部署在开发者服务内部网络中的 TencentDB Agent Memory 记忆组件。每次成功问答会按固定 Team、Agent、用户 UUID 和会话 UUID 隔离写入 L0 对话层，并由同一生产 AI provider 异步提取 L1 原子记忆、L2 场景和 L3 Persona。新提取的 L1 只会作为待确认建议；只有你保存且仍存在于独立加密记忆快照中的条目，才会在后续相关问题中被召回。单次最多召回 5 条、合计 4,000 字符；记忆组件不可用时不会阻断主回答。批准清单继续使用应用层加密并跨设备同步；记忆组件自身的 SQLite 和 L2/L3 文件未做应用层内容加密，依赖服务端内部网络、主机、数据卷和备份访问控制保护。L0/L1 最长保留 180 天，L2/L3 保留到更新、成功自助删除或服务终止；开发者构建关闭该组件默认的 L0/L1 JSONL 冗余明文镜像。</li>
             <li>开启任一可选开发者服务后，设备 bearer token 只保存在设备系统安全存储，服务端仅保存其 HMAC 摘要；学校邮箱在服务端数据库中使用独立密钥进行应用层加密，邮箱查重身份和随机安装标识仅保存带服务端 pepper 的 HMAC。学校邮箱和设备记录保留到相关功能关闭且不再需要共享身份、成功删除、主动请求删除或服务终止；如果未来经单独说明后接入允许的操作记录，其默认最长保留期为 180 天。为证明管理访问而产生的管理审计日志保持 append-only。</li>
@@ -256,7 +428,7 @@
           </ul>
         </article>
 
-        <article class="card">
+        <article class="card" id="sharing">
           <h2>4. 信息共享、服务端点与第三方服务</h2>
           <ul>
             <li>本应用不会出售个人信息，不以内置广告方式变现，也不集成第三方广告或独立分析追踪 SDK。</li>
@@ -267,53 +439,54 @@
             <li>“朵朵校园墙”由第三方朵朵校友圈提供，页面内容、账号、社区互动及其数据处理遵循朵朵自己的服务条款和隐私政策。应用会直接连接当前构建配置的 `www.duoduo.link` 及完成页面所需的受限朵朵 API、图片和静态资源端点；当你点击“保存并打开微信”时，当前小程序码会写入系统相册并由系统打开微信，后续识别和授权由微信与朵朵处理。掌上BNBU 不代表朵朵运营方，也不把学校密码、学校 Cookie 或开发者服务身份发送给朵朵。</li>
             <li>“高德地图”由高德软件有限公司提供。进入校园导航页面后，应用会在独立临时 WebView 中加载由开发者服务托管的高德 JS API 地图画布，并连接高德、AutoNavi 与阿里地图静态资源端点；当前楼宇搜索词会发送给高德 POI 搜索。你主动标记的地点名称和坐标只注入本机地图画布用于绘制，备注不会注入；地图及网络服务提供方仍可能观察地图视窗、源 IP、User-Agent、请求时间和协议等完成地图显示所需的信息。Web Key 会进入网页，安全密钥只保存在开发者服务环境变量并由固定目标代理附加。相关处理遵循高德自己的服务条款与隐私政策；掌上BNBU 不向地图会话注入学校 Cookie、账号标识或地点备注。</li>
             <li>只有你明确开启相应可选功能或主动保存教师评价后，应用才会把本政策第 1 节列明的有限信息发送到开发者运营的 HTTPS 服务。具有用户目录权限的受限管理员可查看学校邮箱和活跃摘要；每次查看都会写入 append-only 管理审计。AI 额度管理员只能调整额度，不能通过该权限查看 prompt、response、邮件正文或课程上下文。具有教师评价治理权限的管理员可查看评价全文、评分、课程匹配、作者学校邮箱和隐藏状态，用于社区治理；该角色可隐藏或恢复单条评价，并按 0 至 365 天限制用户新增或修改评价。查看及每次治理操作均写入 append-only 审计。</li>
-            <li>小U请求由开发者服务转发给生产环境配置的 OpenAI-compatible AI provider。普通文本对话在简单模式可能包含最多 12 次、深度思考可能包含最多 32 次有界 Agent 调用：首次调用临时处理你本次输入、当前会话最近最多 10 条历史、所选思考强度及可用工具/动作名称；后续调用还会临时处理完成本轮回答所需的已选严格工具结果。Provider 也可基于本轮对话返回最多 3 条待确认记忆建议；成功回答还可能由内部记忆组件通过受保护的服务端桥接再次交给同一 Provider，用于提取或归纳 L1-L3 记忆。应用会过滤已有内容和不符合边界的建议，并且不会在用户确认前把候选写入独立加密记忆快照或用于后续回答。开发者服务用最长 10 分钟的加密续接令牌在客户端与服务端之间承载同一轮 Agent 状态，令牌绑定思考强度、用户、设备和会话；服务端不把续接令牌明文或工具结果写入数据库或应用日志。对话本身另按上一节所述保存为用户可清空的加密跨设备历史快照。带附件请求目前通常包含规划和最终回答两次调用，附件只进入最终回答调用。Pydantic AI 在开发者服务内用于编排工具，TencentDB Agent Memory 在开发者服务内部署，二者不构成额外的外部数据接收方；provider API key 只保存在服务端，不会发送给客户端。运营方应选择隐私条款合适的 provider，但你仍应避免在小U输入或附件中填写密码、token、Cookie、身份证件、银行卡或其他不必要的敏感信息。</li>
+            <li>小U与邮件雷达请求由开发者服务按照受限运营路由转发给当前业务配置的 OpenAI-compatible AI provider。普通文本首次调用临时处理你本次输入、当前会话最近最多 10 条历史、所选 Low / Medium / High 思考强度及可用工具/动作名称；后续调用还会临时处理完成本轮回答所需的已选严格工具结果。邮件雷达只把单封邮件的有界正文与允许附件合并为对应业务的一次分析请求。Provider 也可基于本轮内容返回最多 3 条待确认记忆建议；成功普通回答还可能由内部记忆组件通过受保护的服务端桥接再次交给同一 Provider，用于提取或归纳 L1-L3 记忆。应用会过滤已有内容和不符合边界的建议，并且不会在用户确认前把候选写入独立加密记忆快照或用于后续回答。开发者服务使用加密续接或耐久请求账本维持同一轮 Agent 状态，绑定用户、设备、会话与稳定请求 ID；服务端不把工具结果或临时上下文写入普通业务日志。对话本身另按上一节所述保存为用户可清空的加密跨设备历史快照。Pydantic AI 在开发者服务内用于编排工具，TencentDB Agent Memory 在开发者服务内部署，二者不构成额外的外部数据接收方；provider API key 只保存在服务端，不会发送给客户端。运营方应选择隐私条款合适的 provider，但你仍应避免在小U输入或附件中填写密码、token、Cookie、身份证件、银行卡或其他不必要的敏感信息。</li>
             <li>当你请求查询课程教师公开联系方式时，开发者服务会把相关教师姓名作为查询词发送到 BNBU 官方教师目录；服务端只允许访问 `bnbu.edu.cn` 及其子域的 HTTPS 地址，并限制重定向、超时和响应大小。</li>
             <li>学校如需使用后台，应限定授权人员与用途，不得将用户目录权限扩展为无日志的任意查询。除上述实现功能所必需的直接交互、你明确开启的开发者服务及依法必须披露的情形外，应用不会主动将个人信息发送给无关第三方。</li>
           </ul>
         </article>
 
-        <article class="card">
+        <article class="card" id="permissions">
           <h2>5. 邮件内容、文件与系统权限</h2>
           <ul>
             <li>HTML 邮件在受限视图中展示：应用会阻止脚本、表单和远程资源加载；邮件中的外部 HTTP(S) 链接会交给系统浏览器打开，而不是在携带应用会话的邮件视图中访问。</li>
             <li>相册和文件访问仅在你主动选择图片或文件用于上传、提交、导入、下载、打开或分享时使用。Android 6 至 9 在把文件写入公共 Downloads 目录前会请求旧版存储权限；Android 10 及以上通过系统媒体存储接口发布下载，不请求该旧版权限。</li>
             <li>通知权限仅在你启用 DDL 提醒后用于安排和展示通知；Android 还可能使用精确闹钟能力及设备启动事件，以按时触发并在重启后恢复提醒。</li>
+            <li>iPhone/iPad 生物识别权限只在你主动开启或关闭 App 保护时调用系统 Face ID 或 Touch ID；小组件、Apple Watch 和实时活动只使用已写入本机共享容器的精简快照，不读取学校凭据或邮件。</li>
             <li>定位权限只在你向小U明确询问当前位置或附近信息时请求并读取一次位置；应用不因此启动后台持续定位，也不会把位置用于使用状态共享。</li>
             <li>应用不会在未经你主动触发或未启用对应功能的情况下批量读取你的照片、文件、邮件内容或位置。</li>
           </ul>
         </article>
 
-        <article class="card">
+        <article class="card" id="deletion">
           <h2>6. 退出登录、数据删除与用户权利</h2>
           <ul>
             <li>本应用本身不提供独立注册账户；你使用的是学校平台或所配置服务的账户。</li>
             <li>退出登录时，应用会先撤销内存中的登录状态，并等待安全存储中的凭据删除、DDL 提醒停用与通知取消及原生网页会话清理完成。应用会停止并销毁活动官网 WebView；Android 还会尽力清理隔离 Profile（系统支持时）、WebStorage、默认 Cookie、缓存、表单和 HTTP Auth，iOS 会清理活动非持久网页存储及默认存储。底层删除可能失败；应用会报告清理未完整完成，但报告可能是概括性的，因此该过程属于尽力清理，而不是对每一份副本的绝对删除保证。网页数据清理范围也受操作系统和系统 WebView 版本限制。</li>
-            <li>退出登录不会主动删除邮件附件缓存、主动下载到 iOS Documents 或 Android 公共 Downloads 的文件、小U资源库、邮件服务器上的邮件或草稿、学校平台数据、按账号保存的本地 TA 课程和截止时间可见性偏好、小U本地历史、加密跨设备历史或服务端会话。分享缓存按上一节所述在分享结束、失败或超过保留时间时清理，而不是依赖退出登录；小U历史可在其历史抽屉中清空并同步空快照，资源库项目可在资源库逐项删除，其余数据可在对应服务、文件管理器或设备设置中继续管理。</li>
+            <li>退出登录会清除小组件快照并通知配对 Apple Watch 清除缓存；退出登录不会主动删除邮件附件缓存、主动下载到 iOS Documents 或 Android 公共 Downloads 的文件、小U资源库、邮件服务器上的邮件或草稿、学校平台数据、按账号保存的本地 TA 课程和截止时间可见性偏好、小U本地历史、邮件雷达记录、加密跨设备历史或服务端会话。分享缓存按上一节所述在分享结束、失败或超过保留时间时清理，而不是依赖退出登录；小U历史可在其历史抽屉中清空并同步空快照，资源库项目可在资源库逐项删除，其余数据可在对应服务、文件管理器或设备设置中继续管理。</li>
             <li>卸载应用通常会删除应用沙盒和缓存，但 Android 公共 Downloads 文件可能继续保留，iOS Keychain 凭据也可能继续保留；iOS 应用 Documents 目录通常随应用容器一并删除，具体结果受操作系统和备份恢复机制影响。</li>
             <li>退出学校账号不会自动改变可选开发者服务状态、删除已发表教师评价，也不会自动退出朵朵校园墙。关闭使用状态共享会停止 heartbeat；在小U历史抽屉中停用小U会停止新的 AI 请求，但不会自动删除本机历史。若没有其他功能需要远端设备身份，停用流程会请求删除远端用户数据，其中包括加密历史快照与教师评价；只要教师评价、使用状态共享或小U仍需同一独立 App 设备身份，远端设备身份和相应数据可以继续保留。重新打开小U会再次启用 AI 功能。朵朵登录状态可在朵朵页面菜单中单独清除。</li>
-            <li>当相关远端功能均不再需要设备身份时，应用会使用独立设备 token 请求删除该学校邮箱对应的远端用户、设备、教师评价、加密小U历史与记忆快照、设置、AI 用量账本和操作记录。服务端会先按用户隔离维度清理记忆组件中的 L0、L1、L2 和 L3；只有该步骤与主数据库删除均成功后，应用才删除本机远端设备 token。任一步骤失败都会返回失败并提示重试，不会把尚未完成的删除显示为成功。在删除成功前，既有远端数据可能继续保留；生产备份副本按备份周期逐步过期。若同一学校邮箱在另一台设备上仍然同意某项远端功能，或之后再次开启，设备可能重新登记相同邮箱。</li>
+            <li>当相关远端功能均不再需要设备身份时，应用会使用独立设备 token 请求删除该学校邮箱对应的远端用户、设备、教师评价、加密小U历史、记忆与邮件雷达快照、设置、AI 用量账本和操作记录。服务端会先按用户隔离维度清理记忆组件中的 L0、L1、L2 和 L3；只有该步骤与主数据库删除均成功后，应用才删除本机远端设备 token。任一步骤失败都会返回失败并提示重试，不会把尚未完成的删除显示为成功。在删除成功前，既有远端数据可能继续保留；生产备份副本按备份周期逐步过期。若同一学校邮箱在另一台设备上仍然同意某项远端功能，或之后再次开启，设备可能重新登记相同邮箱。</li>
             <li>管理审计日志不会随自助删除一起删除，其中只保留证明管理操作所需的管理员、时间、操作类型、必要的教师评价治理原因和匿名 user UUID，不保留已删除邮箱的明文、评价全文或设备 bearer token。数据库备份中的历史副本会按照生产备份周期逐步过期。</li>
             <li>如需删除学校平台账户、邮件或服务器上的课程相关数据，请联系对应学校、邮件服务或平台管理方处理。对于可选开发者服务，你也可以通过本页底部邮箱请求查询、更正或协助删除；邮箱目前属于客户端自报信息，更正身份验证方式可能需要后续学校身份系统支持。</li>
             <li>如对本应用处理个人信息的方式有疑问，或希望获得协助，请通过本页底部邮箱联系我们。</li>
           </ul>
         </article>
 
-        <article class="card">
+        <article class="card" id="children">
           <h2>7. 未成年人说明</h2>
           <p>
             本应用主要面向有权限访问 BNBU / iSpace 平台的用户提供服务，不针对儿童单独设计，也不会主动以儿童为对象收集个人信息。
           </p>
         </article>
 
-        <article class="card">
+        <article class="card" id="updates">
           <h2>8. 政策更新</h2>
           <p>
             我们可能根据应用功能变化、合规要求或运营安排更新本隐私政策。更新后的版本将发布在本页面，并以上方“最后更新”日期为准。
           </p>
         </article>
 
-        <article class="card">
+        <article class="card" id="contact">
           <h2>9. 联系方式</h2>
           <p>
             如果你对本隐私政策或数据处理方式有任何问题，请联系：
@@ -326,7 +499,7 @@
       </section>
 
       <footer>
-        本页面用于为非官方应用“掌上BNBU”提供公开隐私政策链接。
+        掌上BNBU 软件隐私政策 · BNBU.ME
       </footer>
     </main>
   </body>

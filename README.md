@@ -1,11 +1,13 @@
 # 掌上BNBU Privacy Policy
 
-这个仓库托管非官方应用“掌上BNBU”的公开隐私政策页面。
+这个仓库托管非官方应用“掌上BNBU”软件隐私政策的旧地址兼容镜像。
 
-仓库名 `handsbnbu` 是为保持已发布客户端与 App Store 使用的 GitHub Pages 地址连续可用而保留的 legacy slug。本仓库只维护公开隐私政策，不包含应用核心源码；核心项目与私有源码仓库统一使用 `bnbumobile`。
+仓库名 `handsbnbu` 是为保持已发布客户端与 App Store 使用的 GitHub Pages 地址连续可用而保留的 legacy slug。本仓库只维护与 BNBU.ME 正式页面一致的公开隐私政策，不包含应用核心源码；核心项目与私有源码仓库统一使用 `bnbumobile`。
 
 - 页面入口：[`index.html`](index.html)
-- GitHub Pages 地址：<https://rainchen537.github.io/handsbnbu/>
+- 正式页面：<https://bnbu.yunwai.cloud/app-privacy.html>
+- 香港镜像：<https://bnbu.me/app-privacy.html>
+- 兼容页面：<https://rainchen537.github.io/handsbnbu/>
 - 私有应用仓库：<https://github.com/Rainchen537/bnbumobile>
 
 ## 本地预览
@@ -46,7 +48,7 @@ GitHub 不会仅因仓库中存在该工作流就自动完成 Pages 的首次配
 - 教师评价、课表匹配课程、公开展示、管理员隐藏/恢复、发评限权和治理审计；
 - 数据保留、退出清理、删除方式和联系信息。
 
-修改时更新页面中的“最后更新”日期，并确认内容与应用 README、登录页和实际代码一致。新增公开静态文件时，还必须显式加入工作流中的发布允许列表。
+修改时更新页面中的“最后更新”日期，并确认内容与应用 README、登录页、双官网 `/app-privacy.html` 和实际代码一致。新增公开静态文件时，还必须显式加入工作流中的发布允许列表。兼容页面保留完整正文，不使用跨来源重定向，避免旧客户端的精确 origin WebView 拦截跳转。
 
 ## App Store Connect
 
