@@ -1,6 +1,6 @@
-# 掌上BNBU Privacy Policy
+# BNBU.ME Privacy Policy
 
-这个仓库托管非官方应用“掌上BNBU”软件隐私政策的旧地址兼容镜像。
+这个仓库托管非官方应用“BNBU.ME”软件隐私政策的旧地址兼容镜像。
 
 仓库名 `handsbnbu` 是为保持已发布客户端与 App Store 使用的 GitHub Pages 地址连续可用而保留的 legacy slug。本仓库只维护与 BNBU.ME 正式页面一致的公开隐私政策，不包含应用核心源码；核心项目与私有源码仓库统一使用 `bnbumobile`。
 
@@ -56,3 +56,7 @@ GitHub 不会仅因仓库中存在该工作流就自动完成 Pages 的首次配
 
 - `Privacy Policy URL`
 - 如有需要，也可以用于 `Support URL`
+
+## 2026-09-09 内容更新
+
+增加校园地标公开缓存、整数五分制匿名评论、本人编辑、隐藏／恢复、独立限权与完整删除说明；同步纠正旧版共享开关、设备身份、思考强度和历史存储表述。正文仍以 `index.html` 为唯一源，保持双官网与兼容镜像一致。
