@@ -180,7 +180,7 @@ jobs:
           if public_dir.exists():
               shutil.rmtree(public_dir)
           public_dir.mkdir()
-          allowlist = (Path("index.html"),)
+          allowlist = (Path("index.html"), Path("favicon.ico"))
           for source_file in allowlist:
               shutil.copy2(source_file, public_dir / source_file.name)
 
